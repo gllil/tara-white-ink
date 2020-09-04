@@ -6,7 +6,7 @@ import useFirestore from "../hooks/useFirestore";
 const About = () => {
   const { docs } = useFirestore("pageInfo");
   return (
-    <Container>
+    <Container className="aboutContainer">
       <div className="headerAbout">
         <Row>
           <Col className="text-right">

@@ -1,28 +1,20 @@
 import React, { useState } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Carousel,
-  Modal,
-  Image,
-  Badge,
-} from "react-bootstrap";
+import { Container, Row, Col, Carousel, Modal, Image } from "react-bootstrap";
 import Drawer from "../components/Drawer";
-import logo from "../assets/images/mainLogo.png";
-import { CSSTransition } from "react-transition-group";
+// import logo from "../assets/images/mainLogo.png";
+// import { CSSTransition } from "react-transition-group";
 import HeaderMobile from "../components/HeaderMobile";
 import ImageGrid from "../components/ImageGrid";
 import useFirestore from "../hooks/useFirestore";
 
 const Landing = () => {
   const { docs } = useFirestore("images");
-  const pageinfo = useFirestore("pageInfo").docs;
+  // const pageinfo = useFirestore("pageInfo").docs;
   const [selectedImg, setSelectedImg] = useState(null);
   const [caption, setCaption] = useState(null);
   const [index, setIndex] = useState(0);
-  const [show, setShow] = useState(true);
-  const [menu, setMenu] = useState(false);
+  // const [show, setShow] = useState(true);
+  // const [menu, setMenu] = useState(false);
   const [open, setOpen] = useState(false);
   const handleModalClose = () => {
     setOpen(false);
@@ -32,19 +24,19 @@ const Landing = () => {
     setIndex(selectedIndex);
   };
 
-  const handleClose = (e) => {
-    e.preventDefault();
+  // const handleClose = (e) => {
+  //   e.preventDefault();
 
-    setShow(false);
-    setMenu(true);
-  };
+  //   setShow(false);
+  //   setMenu(true);
+  // };
 
-  const handleOpen = (e) => {
-    e.preventDefault();
+  // const handleOpen = (e) => {
+  //   e.preventDefault();
 
-    setShow(true);
-    setMenu(false);
-  };
+  //   setShow(true);
+  //   setMenu(false);
+  // };
 
   return (
     <Container fluid>
@@ -66,11 +58,11 @@ const Landing = () => {
                 <Carousel.Item className="image-wrapper" key={doc.id}>
                   <img src={doc.url} alt={doc.name} className="images" />
                   <div className="overlay"></div>
-                  {menu && (
+                  {/* {menu && (
                     <div onClick={(e) => handleOpen(e)}>
                       <i className="fas fa-bars menuLg"></i>
                     </div>
-                  )}
+                  )} */}
                   {doc.caption && (
                     <Carousel.Caption className="caption">
                       {`"${doc.caption}"`}
@@ -79,10 +71,10 @@ const Landing = () => {
                 </Carousel.Item>
               ))}
           </Carousel>
-          <Drawer setSelectedImg={setSelectedImg} setIndex={setIndex} />
         </Col>
+        <Drawer setSelectedImg={setSelectedImg} setIndex={setIndex} />
 
-        <CSSTransition
+        {/* <CSSTransition
           in={show}
           unmountOnExit
           timeout={1000}
@@ -117,13 +109,25 @@ const Landing = () => {
                 <img src={logo} alt="tara white logo" className="inkImage" />
               </Col>
             </Row>
-            <Row>
-              <Col className="subtitleContainer">
-                {pageinfo &&
-                  pageinfo.map((doc) => <h4 key={doc.id}>{doc.subtitle}</h4>)}
-              </Col>
-            </Row>
-            <Row>
+            {pageinfo &&
+              pageinfo.map((doc) => (
+                <div>
+                  <Row>
+                    <Col className="subtitleContainer">
+                      <h5 key={doc.id}>{doc.subtitle}</h5>
+                    </Col>
+                  </Row>
+                  <Row className="mt-5">
+                    <Col className="introduction">
+                      <h2>{doc.introductionTitle}</h2>
+                      <h5 className="introSentence">
+                        {doc.introductionSentence}
+                      </h5>
+                    </Col>
+                  </Row>
+                </div>
+              ))}
+            <Row className="mt-5">
               <Col>
                 <ImageGrid
                   setSelectedImg={setSelectedImg}
@@ -132,7 +136,7 @@ const Landing = () => {
               </Col>
             </Row>
           </Col>
-        </CSSTransition>
+        </CSSTransition> */}
       </Row>
       <Row className="mobile-image-grid">
         <Col>

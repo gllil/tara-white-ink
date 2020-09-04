@@ -18,7 +18,12 @@ const ImageGrid = ({ setSelectedImg, setIndex, setOpen, setCaption }) => {
     }
   };
   return (
-    <Container className="mt-5">
+    <Container className="imageGridContainer">
+      <Row>
+        <Col className="text-center">
+          <h2 className="introduction">Gallery</h2>
+        </Col>
+      </Row>
       <Row>
         {docs &&
           docs.map((doc, i) => (
@@ -28,11 +33,7 @@ const ImageGrid = ({ setSelectedImg, setIndex, setOpen, setCaption }) => {
                   className="image-col mt-2 text-center"
                   onClick={(e) => handleClick(e, doc.url, i, doc.caption)}
                 >
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="imageWrap"
-                  >
+                  <motion.div whileHover={{ scale: 1.1 }} className="imageWrap">
                     <img
                       src={doc.url}
                       alt={doc.name}

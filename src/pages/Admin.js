@@ -10,7 +10,7 @@ import {
 } from "react-bootstrap";
 import UploadForm from "../components/UploadForm";
 import AdminImageGrid from "../components/AdminImageGrid";
-import { projectFirestore } from "../firebase/config";
+import { projectFirestore, auth } from "../firebase/config";
 import UploadProfile from "../components/UploadProfile";
 import useFirestore from "../hooks/useFirestore";
 
@@ -89,10 +89,27 @@ const Admin = () => {
     }
   };
 
+  const handleClick = (e) => {
+    e.preventDefault();
+
+    auth.signOut();
+  };
+
   return (
-    <div className="adminMain">
+    <div className="adminMain mb-5">
       <Container>
         <Row>
+          <Button
+            onClick={(e) => handleClick(e)}
+            style={{
+              color: "white",
+              background: "#000000",
+              borderRadius: "25px",
+            }}
+            size="lg"
+          >
+            Logout
+          </Button>
           <Col className="text-center">
             <h1>Page Admin</h1>
           </Col>

@@ -12,7 +12,7 @@ const Drawer = ({ setSelectedImg, setIndex }) => {
 
   const handleClose = (e) => {
     e.preventDefault();
-
+    console.log("close");
     setShow(false);
     setMenu(true);
   };
@@ -41,10 +41,12 @@ const Drawer = ({ setSelectedImg, setIndex }) => {
         <Container className="nav-container">
           <Row>
             <Col className="titleLogo">
-              <div onClick={(e) => handleClose(e)}>
-                <i className="fas fa-times cross"></i>
-              </div>
               <Row>
+                <Col>
+                  <div onClick={(e) => handleClose(e)}>
+                    <i className="fas fa-angle-right fa-2x closeArrow"></i>
+                  </div>
+                </Col>
                 <Col className="text-right">
                   <h5>
                     <a href="/about" className="aboutMeLink">
@@ -68,13 +70,25 @@ const Drawer = ({ setSelectedImg, setIndex }) => {
                   <img src={logo} alt="tara white logo" className="inkImage" />
                 </Col>
               </Row>
-              <Row>
-                <Col className="subtitleContainer">
-                  {docs &&
-                    docs.map((doc) => <h4 key={doc.id}>{doc.subtitle}</h4>)}
-                </Col>
-              </Row>
-              <Row>
+              {docs &&
+                docs.map((doc) => (
+                  <div key={doc.id}>
+                    <Row>
+                      <Col className="subtitleContainer">
+                        <h5 key={doc.id}>{doc.subtitle}</h5>
+                      </Col>
+                    </Row>
+                    <Row className="mt-5">
+                      <Col className="introduction">
+                        <h2>{doc.introductionTitle}</h2>
+                        <h5 className="introSentence">
+                          {doc.introductionSentence}
+                        </h5>
+                      </Col>
+                    </Row>
+                  </div>
+                ))}
+              <Row className="mt-5">
                 <Col>
                   <ImageGrid
                     setSelectedImg={setSelectedImg}
