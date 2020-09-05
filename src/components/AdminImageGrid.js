@@ -46,7 +46,7 @@ const AdminImageGrid = ({
   };
 
   return (
-    <Container>
+    <Container className="mt-5 mb-5">
       <Row>
         {docs &&
           docs.map((doc) => (

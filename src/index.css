@@ -22,6 +22,12 @@ code {
   font-family: "Special Elite", cursive;
 }
 
+.drawerNav {
+  width: 320px;
+  position: fixed;
+  bottom: 0;
+}
+
 .nav-link {
   text-decoration: none;
   color: #ffffff;
@@ -99,16 +105,72 @@ code {
   z-index: 1;
   background-color: #ffffff;
   width: 320px;
-
   /* z-index: 1; */
   font-family: "Special Elite", cursive;
   box-shadow: 3px 5px 7px 3px rgba(0, 0, 0, 0.5),
     3px 5px 7px 3px rgba(0, 0, 0, 0.5);
-
   overflow-y: scroll;
   position: relative;
   top: 0;
   right: 0;
+  padding-left: 0;
+  padding-right: 0;
+  overflow-x: hidden;
+}
+
+.instagram {
+  text-decoration: none;
+  border-radius: 12px;
+  height: 42px;
+  color: #fff;
+  padding: 0px 4px;
+  background: #d6249f;
+  background: radial-gradient(
+    circle at 30% 107%,
+    #fdf497 0%,
+    #fdf497 5%,
+    #fd5949 45%,
+    #d6249f 60%,
+    #285aeb 90%
+  );
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.25);
+  transition: 500ms;
+}
+
+.email {
+  text-decoration: none;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.25);
+  color: #25292d;
+  height: 42px;
+  margin: 0;
+  padding: 0;
+  border-radius: 5px;
+  transition: 500ms;
+}
+.instagram:hover {
+  opacity: 0.8;
+  color: #25292d;
+  height: 39px;
+}
+.email:hover {
+  opacity: 0.8;
+  color: rgb(201, 44, 25);
+  height: 39px;
+}
+
+.socialMediaLink {
+  text-decoration: none;
+  color: #6c757d;
+}
+.socialMediaLink:link {
+  text-decoration: none;
+  color: #6c757d;
+}
+.socialMedia:hover {
+  background-color: #eeb6f9;
+  color: #000000;
+  border: solid 1px #fff;
+  border-radius: 10px;
 }
 /* .nav-container-lg {
   
@@ -135,14 +197,14 @@ code {
   z-index: 1;
   position: absolute;
   top: 60px;
-  right: 75px;
+  right: 70px;
   color: #ffffff;
 }
 
 .inkImage {
   z-index: 0;
   position: absolute;
-  right: 35px;
+  right: 30px;
   top: 5px;
   width: 150px;
 }
@@ -150,7 +212,7 @@ code {
 .white {
   position: absolute;
   top: 60px;
-  right: 155px;
+  right: 153px;
 }
 
 .logoContainer {
@@ -285,9 +347,8 @@ code {
 }
 
 .caption {
-  font-family: "Inconsolata", monospace;
+  font-family: "Special Elite", cursive;
   margin-bottom: 100px;
-  font-style: italic;
   font-size: 20pt;
   z-index: 1;
 }
@@ -309,7 +370,7 @@ code {
   color: #ffffff;
   position: relative;
   right: 0px;
-  top: 120px;
+  top: 60px;
 }
 
 .inkImageAbout {
@@ -317,18 +378,19 @@ code {
   width: 150px;
   position: relative;
   left: 75px;
-  top: 10px;
+  top: -50px;
 }
 
 .whiteAbout {
   position: relative;
   right: 10px;
-  top: 120px;
+  top: 60px;
 }
 
 .logoContainerAbout {
   justify-content: center;
   display: flex;
+  height: 150px;
 }
 
 .logoWrapperAbout {
@@ -442,7 +504,7 @@ code {
     color: #ffffff;
     position: relative;
     right: 0px;
-    top: 120px;
+    top: 60px;
   }
 
   .inkImageMobile {
@@ -450,21 +512,24 @@ code {
     width: 150px;
     position: relative;
     left: 75px;
-    top: 10px;
+    top: -50px;
   }
 
   .whiteMobile {
     position: relative;
     right: 10px;
-    top: 120px;
+    top: 60px;
   }
 
   .logoContainerMobile {
     justify-content: center;
     display: flex;
+    height: 150px;
   }
 
   .logoWrapperMobile {
+    /* height: 200px; */
+
     width: fit-content;
   }
 }

@@ -70,7 +70,7 @@ const Login = ({ history }) => {
           </Col>
         </Row>
       </div>
-      <Row className="mt-5">
+      <Row className="mt-5 mb-5">
         <Col>
           <Jumbotron className="jumbotron">
             <Row className="mt-2">

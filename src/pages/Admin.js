@@ -99,22 +99,25 @@ const Admin = () => {
     <div className="adminMain mb-5">
       <Container>
         <Row>
-          <Button
-            onClick={(e) => handleClick(e)}
-            style={{
-              color: "white",
-              background: "#000000",
-              borderRadius: "25px",
-            }}
-            size="lg"
-          >
-            Logout
-          </Button>
-          <Col className="text-center">
+          <Col xs={4}>
+            <Button
+              onClick={(e) => handleClick(e)}
+              style={{
+                color: "white",
+                background: "#000000",
+                borderRadius: "25px",
+              }}
+              size="lg"
+            >
+              Logout
+            </Button>
+          </Col>
+          <Col xs={4} className="text-center">
             <h1>Page Admin</h1>
           </Col>
+          <Col xs={4} />
         </Row>
-        <Row>
+        <Row className="mt-5 mb-5">
           <Col>
             {docs ? (
               docs.map((doc) => (
@@ -125,22 +128,6 @@ const Admin = () => {
                       type="text"
                       defaultValue={doc.subtitle}
                       data-property="subtitle"
-                    />
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Label>Intoduction title</Form.Label>
-                    <Form.Control
-                      type="text"
-                      defaultValue={doc.introductionTitle}
-                      data-property="introductionTitle"
-                    />
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Label>Intoduction Sentence</Form.Label>
-                    <Form.Control
-                      type="text"
-                      data-property="introductionSentence"
-                      defaultValue={doc.introductionSentence}
                     />
                   </Form.Group>
                   <Form.Group>
@@ -160,17 +147,6 @@ const Admin = () => {
                 <Form.Group>
                   <Form.Label>Page Subtitle</Form.Label>
                   <Form.Control type="text" data-property="subtitle" />
-                </Form.Group>
-                <Form.Group>
-                  <Form.Label>Intoduction title</Form.Label>
-                  <Form.Control type="text" data-property="introductionTitle" />
-                </Form.Group>
-                <Form.Group>
-                  <Form.Label>Intoduction Sentence</Form.Label>
-                  <Form.Control
-                    type="text"
-                    data-property="introductionSentence"
-                  />
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>About Me Paragraph</Form.Label>

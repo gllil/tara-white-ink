@@ -20,11 +20,6 @@ const ImageGrid = ({ setSelectedImg, setIndex, setOpen, setCaption }) => {
   return (
     <Container className="imageGridContainer">
       <Row>
-        <Col className="text-center">
-          <h2 className="introduction">Gallery</h2>
-        </Col>
-      </Row>
-      <Row>
         {docs &&
           docs.map((doc, i) => (
             <Col xs={12} sm={6} key={doc.id}>

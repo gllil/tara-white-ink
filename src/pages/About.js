@@ -10,24 +10,52 @@ const About = () => {
       <div className="headerAbout">
         <Row>
           <Col className="text-right">
-            <h5>
+            <h4>
               <a href="/" className="aboutMeLink">
-                <Badge className="aboutMeLinkStyle" pill variant="secondary">
-                  Home
+                <Badge
+                  pill
+                  className="aboutMeLinkStyle m-1"
+                  variant="secondary"
+                >
+                  <i class="fas fa-home fa-2x"></i>
                 </Badge>
               </a>
-            </h5>
+            </h4>
           </Col>
         </Row>
         <Row>
           <Col className="logoContainerAbout">
             <div className="logoWrapperAbout">
               <h1>
-                <span className="whiteAbout">White</span>
+                <span className="whiteAbout">white</span>
                 <span className="inkAbout">ink</span>
               </h1>
               <img src={logo} alt="tara white logo" className="inkImageAbout" />
             </div>
+          </Col>
+        </Row>
+        {docs &&
+          docs.map((doc) => (
+            <Row key={doc.id}>
+              <Col className="subtitleContainer">
+                <h3 key={doc.id}>{doc.subtitle}</h3>
+              </Col>
+            </Row>
+          ))}
+        <Row>
+          <Col className="text-center mt-3">
+            <a
+              className="intagramLink"
+              href="https://www.instagram.com/tara.whiteink/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fab fa-instagram fa-3x instagram"></i>
+            </a>
+            <a className="emailLink" href="mailto:WinterWhite2019@gmail.com">
+              <i className="far fa-envelope fa-3x ml-4 email"></i>
+            </a>
+            <h5 className="mt-3">(801) 555-5555</h5>
           </Col>
         </Row>
       </div>
