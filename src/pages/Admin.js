@@ -28,6 +28,16 @@ const Admin = () => {
   const [successModal, setSuccessModal] = useState(false);
   const [errorModal, setErrorModal] = useState(false);
   const [noSuccess, setNoSuccess] = useState(false);
+
+  const formatPhoneNumber = (phoneNum) => {
+    var cleaned = ("" + phoneNum).replace(/\D/g, "");
+    var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+    if (match) {
+      return "(" + match[1] + ") " + match[2] + "-" + match[3];
+    }
+    return null;
+  };
+
   const handleClose = () => {
     setOpen(false);
     setModalOpen(false);
@@ -128,6 +138,30 @@ const Admin = () => {
                       type="text"
                       defaultValue={doc.subtitle}
                       data-property="subtitle"
+                    />
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Label>Instagram Link</Form.Label>
+                    <Form.Control
+                      type="text"
+                      defaultValue={doc.instagram}
+                      data-property="instagram"
+                    />
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Label>Email Address</Form.Label>
+                    <Form.Control
+                      type="email"
+                      defaultValue={doc.email}
+                      data-property="email"
+                    />
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Label>Business Phone Number</Form.Label>
+                    <Form.Control
+                      type="tel"
+                      defaultValue={formatPhoneNumber(doc.phone)}
+                      data-property="phone"
                     />
                   </Form.Group>
                   <Form.Group>

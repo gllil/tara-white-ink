@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Custom home builder & designer specializing in kitchen & bathroom remodeling. Serving Salt Lake City, Stansbury and Park City Utah."
     />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -30,5 +30,28 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-analytics.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyC5RCdECmgN7PnX9cMGtQ7P71o04SG3980",
+        authDomain: "tara-white-ink.firebaseapp.com",
+        databaseURL: "https://tara-white-ink.firebaseio.com",
+        projectId: "tara-white-ink",
+        storageBucket: "tara-white-ink.appspot.com",
+        messagingSenderId: "266133778755",
+        appId: "1:266133778755:web:e024e25432a4b41e343ff6",
+        measurementId: "G-MP2FL4NHMP",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
   </body>
 </html>

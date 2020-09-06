@@ -5,6 +5,14 @@ import useFirestore from "../hooks/useFirestore";
 
 const About = () => {
   const { docs } = useFirestore("pageInfo");
+  const formatPhoneNumber = (phoneNum) => {
+    var cleaned = ("" + phoneNum).replace(/\D/g, "");
+    var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+    if (match) {
+      return "(" + match[1] + ") " + match[2] + "-" + match[3];
+    }
+    return null;
+  };
   return (
     <Container className="aboutContainer">
       <div className="headerAbout">
@@ -36,28 +44,30 @@ const About = () => {
         </Row>
         {docs &&
           docs.map((doc) => (
-            <Row key={doc.id}>
-              <Col className="subtitleContainer">
-                <h3 key={doc.id}>{doc.subtitle}</h3>
-              </Col>
-            </Row>
+            <div key={doc.id}>
+              <Row>
+                <Col className="subtitleContainer">
+                  <h3 key={doc.id}>{doc.subtitle}</h3>
+                </Col>
+              </Row>
+              <Row>
+                <Col className="text-center mt-3">
+                  <a
+                    className="intagramLink"
+                    href={doc.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <i className="fab fa-instagram fa-3x instagram"></i>
+                  </a>
+                  <a className="emailLink" href={`mailto:${doc.email}`}>
+                    <i className="far fa-envelope fa-3x ml-4 email"></i>
+                  </a>
+                  <h5 className="mt-3">{formatPhoneNumber(doc.phone)}</h5>
+                </Col>
+              </Row>
+            </div>
           ))}
-        <Row>
-          <Col className="text-center mt-3">
-            <a
-              className="intagramLink"
-              href="https://www.instagram.com/tara.whiteink/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i className="fab fa-instagram fa-3x instagram"></i>
-            </a>
-            <a className="emailLink" href="mailto:WinterWhite2019@gmail.com">
-              <i className="far fa-envelope fa-3x ml-4 email"></i>
-            </a>
-            <h5 className="mt-3">(801) 555-5555</h5>
-          </Col>
-        </Row>
       </div>
       <Row>
         <Col>
