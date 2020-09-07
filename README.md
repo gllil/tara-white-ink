@@ -11,3 +11,7 @@ https://tarawhite.ink/
 # Image
 
 <img src="https://github.com/gllil/tara-white-ink/blob/master/src/assets/images/pageImage.png" />
+
+# Mobile Image
+
+<img src="https://github.com/gllil/tara-white-ink/blob/master/src/assets/images/pageImageMobile.png" />
