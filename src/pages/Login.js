@@ -10,11 +10,24 @@ import {
   Form,
   Button,
   Jumbotron,
+  Modal,
 } from "react-bootstrap";
 import logo from "../assets/images/mainLogo.png";
 
 const Login = ({ history }) => {
   const [form, setForm] = useState({});
+  const [open, setOpen] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [email, setEmail] = useState();
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpen = (e) => {
+    e.preventDefault();
+    setOpen(true);
+  };
 
   //get user info
   const handleChange = (e) => {
@@ -36,6 +49,37 @@ const Login = ({ history }) => {
         history.push("/admin");
       })
       .catch((error) => alert(error));
+  };
+
+  const handleEmail = (e) => {
+    const { value } = e.target;
+    console.log(value);
+    setEmail(value);
+  };
+
+  const sendPasswordReset = (e) => {
+    e.preventDefault();
+
+    // [START sendpasswordemail]
+    auth
+      .sendPasswordResetEmail(email)
+      .then(function () {
+        setSuccess(true);
+      })
+      .catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // [START_EXCLUDE]
+        if (errorCode === "auth/invalid-email") {
+          alert(errorMessage);
+        } else if (errorCode === "auth/user-not-found") {
+          alert(errorMessage);
+        }
+        console.log(error);
+        // [END_EXCLUDE]
+      });
+    // [END sendpasswordemail];
   };
 
   const { currentUser } = useContext(AuthContext);
@@ -81,7 +125,7 @@ const Login = ({ history }) => {
                   onSubmit={(e) => handleSubmit(e)}
                 >
                   <Form.Group>
-                    <Form.Label>Email address</Form.Label>
+                    <Form.Label>Enter Your Email address</Form.Label>
                     <Form.Control
                       name="email"
                       type="email"
@@ -96,7 +140,59 @@ const Login = ({ history }) => {
                       placeholder="Password"
                       name="password"
                     />
+                    <Form.Text
+                      as="button"
+                      style={{ border: "none", background: "transparent" }}
+                      onClick={(e) => handleOpen(e)}
+                    >
+                      Forgot Password?
+                    </Form.Text>
                   </Form.Group>
+
+                  <Modal show={open} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                      <Modal.Title>Password Reset</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                      {success ? (
+                        <Container>
+                          <Row>
+                            <Col className="text-center">
+                              <h1>Password Reset Successfully Sent</h1>
+                              <p>
+                                You will receive an email with a password reset
+                                link shortly.
+                              </p>
+                            </Col>
+                          </Row>
+                        </Container>
+                      ) : (
+                        <Form>
+                          <Form.Group>
+                            <Form.Label>Email Address</Form.Label>
+                            <Form.Control
+                              type="text"
+                              data-property="email"
+                              onChange={handleEmail}
+                            />
+                          </Form.Group>
+                          <Form.Text>
+                            Once submitted an email will be sent to you shortly.
+                          </Form.Text>
+                        </Form>
+                      )}
+                    </Modal.Body>
+                    <Modal.Footer>
+                      <Button variant="secondary" onClick={handleClose}>
+                        Close
+                      </Button>
+                      {!success && (
+                        <Button variant="primary" onClick={sendPasswordReset}>
+                          Send Password Reset
+                        </Button>
+                      )}
+                    </Modal.Footer>
+                  </Modal>
 
                   <Button
                     className="loginBtn"
