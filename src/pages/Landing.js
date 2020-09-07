@@ -31,8 +31,10 @@ const Landing = () => {
             activeIndex={index}
             onSelect={handleSelect}
             interval={10000}
+            defaultActiveIndex={0}
             pause="hover"
             className="carousel"
+            indicators={false}
           >
             {docs &&
               docs.map((doc) => (

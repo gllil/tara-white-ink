@@ -1,6 +1,11 @@
-# Tara White Ink Web App
+# Tara White Ink
 
 # Description
 
-- Website for Home Design Company
-# tara-white-ink
+This is a web app for a home design company. Inludes a gallery and a backend that allows the user to update their information on the website.
+
+# Link
+
+https://tarawhite.ink/
+
+# Image

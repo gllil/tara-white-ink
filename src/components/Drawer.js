@@ -98,7 +98,7 @@ const Drawer = ({ setSelectedImg, setIndex }) => {
                     </Row>
                   </div>
                 ))}
-              <Row className="mt-5">
+              <Row className="mt-5 imageGridSection">
                 <Col>
                   <ImageGrid
                     setSelectedImg={setSelectedImg}
