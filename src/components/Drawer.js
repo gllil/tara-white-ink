@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Nav } from "react-bootstrap";
 import logo from "../assets/images/mainLogo.png";
-import useFirestore from "../hooks/useFirestore";
 import { CSSTransition } from "react-transition-group";
 import ImageGrid from "./ImageGrid";
+import useFirestoreDesc from "../hooks/useFirestoreDesc";
 
 const Drawer = ({ setSelectedImg, setIndex }) => {
-  const { docs } = useFirestore("pageInfo");
+  const { docs } = useFirestoreDesc("pageInfo");
   const [show, setShow] = useState(true);
   const [menu, setMenu] = useState(false);
 
@@ -77,7 +77,8 @@ const Drawer = ({ setSelectedImg, setIndex }) => {
                   <div key={doc.id}>
                     <Row>
                       <Col className="subtitleContainer">
-                        <h3 key={doc.id}>{doc.subtitle}</h3>
+                        <h2>{doc.subtitle}</h2>
+                        <h4 className="mt-3">{doc.description}</h4>
                       </Col>
                     </Row>
                     <Row>

@@ -26,10 +26,23 @@ const useStorage = (file) => {
       async () => {
         const url = await storageRef.getDownloadURL();
         const createdAt = timestamp();
-        collectionRef.add({ url, createdAt });
-        setUrl(url);
+
+        collectionRef.get().then((res) => {
+          let num = res.size + 1;
+          const newImageData = {
+            url: url,
+            createdAt: createdAt,
+            orderNum: num,
+          };
+
+          collectionRef.add(newImageData);
+
+          setUrl(url);
+        });
       }
     );
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [file]);
 
   return { progress, url, error };

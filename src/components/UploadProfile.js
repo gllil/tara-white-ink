@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import useFirestore from "../hooks/useFirestore";
 import { motion } from "framer-motion";
 import ProfileProgress from "./ProfileProgress";
 import { projectStorage } from "../firebase/config";
+import useFirestoreDesc from "../hooks/useFirestoreDesc";
 
 const UploadProfile = () => {
-  const { docs } = useFirestore("pageInfo");
+  const { docs } = useFirestoreDesc("pageInfo");
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
   const [url, setUrl] = useState(null);

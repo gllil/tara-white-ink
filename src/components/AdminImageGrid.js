@@ -18,7 +18,7 @@ const AdminImageGrid = ({
     setOpen(true);
   };
 
-  const handleDelete = (e, id, url) => {
+  const handleDelete = (e, id, url, num) => {
     e.preventDefault();
     const imageRef = projectStorage.refFromURL(url);
     imageRef
@@ -35,6 +35,21 @@ const AdminImageGrid = ({
         console.log("Document successfully deleted!");
       })
       .catch((error) => console.error("Error removing document: ", error));
+    projectFirestore
+      .collection("images")
+      .where("orderNum", ">", num)
+      .get()
+      .then((res) => {
+        res.docs.forEach((n) => {
+          let originalNum = n.data().orderNum;
+          let newNum = originalNum - 1;
+
+          n.ref
+            .update({ orderNum: newNum })
+            .then(() => console.log("updated other docs order numbers"))
+            .catch((err) => console.log(err));
+        });
+      });
   };
 
   const handleEdit = (e, doc, id, caption) => {
@@ -43,6 +58,76 @@ const AdminImageGrid = ({
     setSelectedImg(doc);
     setImageId(id);
     setImgCaption(caption);
+  };
+
+  const increaseOrder = (e, order) => {
+    e.preventDefault();
+    let queueNum = order;
+    let nextQueueNum = order + 1;
+    let newQueueNum = queueNum + 1;
+    let newNextQueueNum = order;
+    const imageOrderRef = projectFirestore.collection("images");
+
+    if (queueNum < docs.length) {
+      imageOrderRef
+        .where("orderNum", "==", queueNum)
+        .get()
+        .then((res) => {
+          const num = res.docs[0];
+          num.ref
+            .update({ orderNum: newQueueNum })
+            .then(() => console.log("Successful Increase"))
+            .catch((err) => console.log(err));
+        });
+
+      imageOrderRef
+        .where("orderNum", "==", nextQueueNum)
+        .get()
+        .then((res) => {
+          const num = res.docs[0];
+          num.ref
+            .update({ orderNum: newNextQueueNum })
+            .then(() => console.log("Successful Increase"))
+            .catch((err) => console.log(err));
+        });
+    } else {
+      console.log("You are at the end of the list");
+    }
+  };
+
+  const decreaseOrder = (e, order) => {
+    e.preventDefault();
+    let queueNum = order;
+    let prevQueueNum = order - 1;
+    let newQueueNum = queueNum - 1;
+    let newNextQueueNum = order;
+    const imageOrderRef = projectFirestore.collection("images");
+
+    if (queueNum > 1) {
+      imageOrderRef
+        .where("orderNum", "==", queueNum)
+        .get()
+        .then((res) => {
+          const num = res.docs[0];
+          num.ref
+            .update({ orderNum: newQueueNum })
+            .then(() => console.log("Successful Decrease"))
+            .catch((err) => console.log(err));
+        });
+
+      imageOrderRef
+        .where("orderNum", "==", prevQueueNum)
+        .get()
+        .then((res) => {
+          const num = res.docs[0];
+          num.ref
+            .update({ orderNum: newNextQueueNum })
+            .then(() => console.log("Successful Decrease"))
+            .catch((err) => console.log(err));
+        });
+    } else {
+      console.log("You are at the beginning of the list");
+    }
   };
 
   return (
@@ -80,10 +165,22 @@ const AdminImageGrid = ({
               </Row>
               <Row>
                 <Col className="text-center m-1">
+                  {doc.orderNum > 1 && (
+                    <Button
+                      className="mr-1 p-1 arrowBtn"
+                      variant="info"
+                      onClick={(e) => decreaseOrder(e, doc.orderNum)}
+                    >
+                      <i className="fas fa-caret-left"></i>
+                    </Button>
+                  )}
+
                   <Button
                     variant="warning"
                     size="small"
-                    onClick={(e) => handleDelete(e, doc.id, doc.url)}
+                    onClick={(e) =>
+                      handleDelete(e, doc.id, doc.url, doc.orderNum)
+                    }
                   >
                     Delete
                   </Button>
@@ -94,6 +191,15 @@ const AdminImageGrid = ({
                   >
                     Edit
                   </Button>
+                  {doc.orderNum < docs.length && (
+                    <Button
+                      className="ml-1 p-1 arrowBtn"
+                      variant="info"
+                      onClick={(e) => increaseOrder(e, doc.orderNum)}
+                    >
+                      <i className="fas fa-caret-right"></i>
+                    </Button>
+                  )}
                 </Col>
               </Row>
             </Col>

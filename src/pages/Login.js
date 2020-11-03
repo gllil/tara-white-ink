@@ -106,7 +106,7 @@ const Login = ({ history }) => {
           <Col className="logoContainerAbout">
             <div className="logoWrapperAbout">
               <h1>
-                <span className="whiteAbout">White</span>
+                <span className="whiteAbout">white</span>
                 <span className="inkAbout">ink</span>
               </h1>
               <img src={logo} alt="tara white logo" className="inkImageAbout" />
@@ -140,13 +140,6 @@ const Login = ({ history }) => {
                       placeholder="Password"
                       name="password"
                     />
-                    <Form.Text
-                      as="button"
-                      style={{ border: "none", background: "transparent" }}
-                      onClick={(e) => handleOpen(e)}
-                    >
-                      Forgot Password?
-                    </Form.Text>
                   </Form.Group>
 
                   <Modal show={open} onHide={handleClose}>
@@ -202,6 +195,18 @@ const Login = ({ history }) => {
                     Login
                   </Button>
                 </Form>
+
+                <Button
+                  className="mt-2 p-0 ml-0"
+                  style={{
+                    border: "none",
+                    background: "transparent",
+                    color: "#333",
+                  }}
+                  onClick={(e) => handleOpen(e)}
+                >
+                  Forgot Password?
+                </Button>
               </Col>
             </Row>
           </Jumbotron>

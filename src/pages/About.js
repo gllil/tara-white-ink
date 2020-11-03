@@ -1,10 +1,10 @@
 import React from "react";
 import { Row, Col, Container, Badge } from "react-bootstrap";
 import logo from "../assets/images/mainLogo.png";
-import useFirestore from "../hooks/useFirestore";
+import useFirestoreDesc from "../hooks/useFirestoreDesc";
 
 const About = () => {
-  const { docs } = useFirestore("pageInfo");
+  const { docs } = useFirestoreDesc("pageInfo");
   const formatPhoneNumber = (phoneNum) => {
     var cleaned = ("" + phoneNum).replace(/\D/g, "");
     var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
@@ -47,7 +47,8 @@ const About = () => {
             <div key={doc.id}>
               <Row>
                 <Col className="subtitleContainer">
-                  <h3 key={doc.id}>{doc.subtitle}</h3>
+                  <h2>{doc.subtitle}</h2>
+                  <h4 className="mt-3">{doc.description}</h4>
                 </Col>
               </Row>
               <Row>

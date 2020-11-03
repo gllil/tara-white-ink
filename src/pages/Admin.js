@@ -12,10 +12,10 @@ import UploadForm from "../components/UploadForm";
 import AdminImageGrid from "../components/AdminImageGrid";
 import { projectFirestore, auth } from "../firebase/config";
 import UploadProfile from "../components/UploadProfile";
-import useFirestore from "../hooks/useFirestore";
+import useFirestoreDesc from "../hooks/useFirestoreDesc";
 
 const Admin = () => {
-  const { docs } = useFirestore("pageInfo");
+  const { docs } = useFirestoreDesc("pageInfo");
   const imagesRef = projectFirestore.collection("images");
   const pageDataRef = projectFirestore.collection("pageInfo");
   const [selectedImg, setSelectedImg] = useState(null);
@@ -141,6 +141,14 @@ const Admin = () => {
                     />
                   </Form.Group>
                   <Form.Group>
+                    <Form.Label>Page Tag Line</Form.Label>
+                    <Form.Control
+                      type="text"
+                      defaultValue={doc.description}
+                      data-property="description"
+                    />
+                  </Form.Group>
+                  <Form.Group>
                     <Form.Label>Instagram Link</Form.Label>
                     <Form.Control
                       type="text"
@@ -184,28 +192,29 @@ const Admin = () => {
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>About Me Paragraph</Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    type="text"
-                    data-property="aboutMe"
-                  />
+                  <Form.Control as="textarea" data-property="aboutMe" />
                 </Form.Group>
                 <Button onClick={handleSubmit}>Update</Button>
               </Form>
             )}
 
             <Modal className="p-2" show={successModal}>
-              <Row>
-                <Col>
-                  <h3>Updated Successfully</h3>
-                </Col>
-              </Row>
-
-              <Row>
-                <Col>
-                  <Button onClick={() => setSuccessModal(false)}>Close</Button>
-                </Col>
-              </Row>
+              <Modal.Body>
+                <Row>
+                  <Col>
+                    <h3>Updated Successfully</h3>
+                  </Col>
+                </Row>
+              </Modal.Body>
+              <Modal.Footer>
+                <Row>
+                  <Col>
+                    <Button onClick={() => setSuccessModal(false)}>
+                      Close
+                    </Button>
+                  </Col>
+                </Row>
+              </Modal.Footer>
             </Modal>
             <Modal className="p-2" show={errorModal}>
               <Row>

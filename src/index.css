@@ -407,6 +407,10 @@ code {
   padding: 20px;
 }
 
+.arrowBtn {
+  background-color: #25292d;
+  border-color: #25292d;
+}
 @media only screen and (max-width: 800px) {
   .imageGridContainer {
     margin-bottom: 116px;

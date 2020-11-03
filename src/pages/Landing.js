@@ -21,9 +21,7 @@ const Landing = () => {
 
   return (
     <Container fluid>
-      {selectedImg && (
-        <img className="main-bg" src={selectedImg} alt="background" />
-      )}
+      {open && <img className="main-bg" src={selectedImg} alt="background" />}
       <Row>
         <Col className="p-0">
           <HeaderMobile />
@@ -61,7 +59,13 @@ const Landing = () => {
             setOpen={setOpen}
             setCaption={setCaption}
           />
-          <Modal show={open} onHide={handleModalClose} className="mobileModal">
+          <Modal
+            size="xl"
+            show={open}
+            onHide={handleModalClose}
+            className="mobileModal"
+            centered
+          >
             <Modal.Body className="p-0">
               <Image src={selectedImg} className="modalImage" />
             </Modal.Body>
