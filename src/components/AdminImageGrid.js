@@ -165,11 +165,11 @@ const AdminImageGrid = ({
               </Row>
               <Row>
                 <Col className="text-center m-1">
-                  {doc.orderNum > 1 && (
+                  {doc.orderNum < docs.length && (
                     <Button
                       className="mr-1 p-1 arrowBtn"
                       variant="info"
-                      onClick={(e) => decreaseOrder(e, doc.orderNum)}
+                      onClick={(e) => increaseOrder(e, doc.orderNum)}
                     >
                       <i className="fas fa-caret-left"></i>
                     </Button>
@@ -191,11 +191,11 @@ const AdminImageGrid = ({
                   >
                     Edit
                   </Button>
-                  {doc.orderNum < docs.length && (
+                  {doc.orderNum > 1 && (
                     <Button
                       className="ml-1 p-1 arrowBtn"
                       variant="info"
-                      onClick={(e) => increaseOrder(e, doc.orderNum)}
+                      onClick={(e) => decreaseOrder(e, doc.orderNum)}
                     >
                       <i className="fas fa-caret-right"></i>
                     </Button>
