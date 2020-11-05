@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import logo from "../assets/images/mainLogo.png";
 import useFirestoreDesc from "../hooks/useFirestoreDesc";
 
@@ -15,7 +15,7 @@ const HeaderMobile = () => {
     return null;
   };
   return (
-    <div className="header-mobile">
+    <Container className="header-mobile">
       <Row>
         <Col className="logoContainerMobile">
           <div className="logoWrapperMobile">
@@ -54,7 +54,7 @@ const HeaderMobile = () => {
             </Row>
           </div>
         ))}
-    </div>
+    </Container>
   );
 };
 

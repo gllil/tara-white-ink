@@ -149,7 +149,7 @@ const AdminImageGrid = ({
                   onClick={(e) => handleClick(e, doc.url)}
                 >
                   <div className="adminImageWrap text-center">
-                    <Image src={doc.url} className="gallery-images" />
+                    <Image src={doc.url} className="admin-gallery-images" />
                   </div>
                 </Col>
               </Row>

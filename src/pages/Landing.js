@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Carousel, Modal, Image } from "react-bootstrap";
+import { Container, Row, Col, Carousel, Modal } from "react-bootstrap";
 import Drawer from "../components/Drawer";
 import HeaderMobile from "../components/HeaderMobile";
-import ImageGrid from "../components/ImageGrid";
+import ImageGridMobile from "../components/ImageGridMobile";
 import useFirestore from "../hooks/useFirestore";
 
 const Landing = () => {
@@ -53,7 +53,7 @@ const Landing = () => {
       </Row>
       <Row className="mobile-image-grid">
         <Col>
-          <ImageGrid
+          <ImageGridMobile
             setSelectedImg={setSelectedImg}
             setIndex={setIndex}
             setOpen={setOpen}
@@ -67,22 +67,13 @@ const Landing = () => {
             centered
           >
             <Modal.Body className="p-0">
-              <Image src={selectedImg} className="modalImage" />
+              <img src={selectedImg} className="modalImage" alt={caption} />
+              {caption && (
+                <div className="modal-image-text-wrapper">
+                  <p className="modal-image-text">{caption}</p>
+                </div>
+              )}
             </Modal.Body>
-
-            {selectedImg && (
-              <div>
-                {caption && (
-                  <Modal.Footer className="text-center modal-footer">
-                    <Row>
-                      <Col>
-                        <p className="text-white">{`"${caption}"`}</p>
-                      </Col>
-                    </Row>
-                  </Modal.Footer>
-                )}
-              </div>
-            )}
           </Modal>
         </Col>
       </Row>
