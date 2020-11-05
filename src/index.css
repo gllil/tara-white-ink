@@ -52,10 +52,25 @@ code {
 
 .modalImage {
   display: block;
-  width: 100%;
+  width: 100vw;
   height: 100%;
   position: relative;
   z-index: 1;
+}
+
+.modal-body-wrap {
+  width: 100vw;
+}
+
+.modal-body {
+  background: rgba(0, 0, 0, 0);
+  width: 101%;
+  height: 100%;
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  border-radius: 0px;
 }
 
 .mobileModal {
@@ -64,14 +79,14 @@ code {
 
 .modal-image-text-wrapper {
   display: flexbox;
-  width: 100%;
+  width: 100vw;
   position: absolute;
   z-index: 1;
   text-align: center;
 }
 
 .modal-image-text {
-  width: 100%;
+  width: 100vw;
   text-align: center;
   padding: 5px;
   z-index: 2;

@@ -64,11 +64,12 @@ const Landing = () => {
             show={open}
             onHide={handleModalClose}
             className="mobileModal"
+            dialogClassName="modal-body"
             centered
           >
-            <Modal.Body className="p-0">
+            <Modal.Body className="p-0 modal-body-wrap">
               <img src={selectedImg} className="modalImage" alt={caption} />
-              {caption && (
+              {caption && selectedImg && (
                 <div className="modal-image-text-wrapper">
                   <p className="modal-image-text">{caption}</p>
                 </div>
