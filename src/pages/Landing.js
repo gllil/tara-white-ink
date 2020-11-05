@@ -64,7 +64,7 @@ const Landing = () => {
             show={open}
             onHide={handleModalClose}
             className="mobileModal"
-            dialogClassName="modal-body"
+            dialogClassName="modal-body pl-0"
             centered
           >
             <Modal.Body className="p-0 modal-body-wrap">

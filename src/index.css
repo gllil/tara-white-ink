@@ -75,6 +75,8 @@ code {
 
 .mobileModal {
   background: rgba(0, 0, 0, 0.4);
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 .modal-image-text-wrapper {
@@ -557,7 +559,7 @@ code {
 @media only screen and (max-width: 575px) {
   .imageWrap {
     width: 100%;
-    height: 275px;
+    height: 300px;
     overflow: hidden;
     border-radius: 0px;
     /* background-color: #333; */
@@ -568,7 +570,7 @@ code {
   .gallery-image-text-wrapper {
     display: flexbox;
     width: 100%;
-    height: 275px;
+    height: 300px;
     position: absolute;
     z-index: 2;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
