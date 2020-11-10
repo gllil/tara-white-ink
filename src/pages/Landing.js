@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Carousel, Modal } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Carousel,
+  Modal,
+  Image,
+  Spinner,
+} from "react-bootstrap";
 import Drawer from "../components/Drawer";
 import HeaderMobile from "../components/HeaderMobile";
 import ImageGridMobile from "../components/ImageGridMobile";
@@ -60,7 +68,6 @@ const Landing = () => {
             setCaption={setCaption}
           />
           <Modal
-            size="xl"
             show={open}
             onHide={handleModalClose}
             className="mobileModal pl-0"
@@ -68,7 +75,18 @@ const Landing = () => {
             centered
           >
             <Modal.Body className="p-0 modal-body-wrap">
-              <img src={selectedImg} className="modalImage" alt={caption} />
+              {selectedImg ? (
+                <Image src={selectedImg} className="modalImage" alt={caption} />
+              ) : (
+                <Container>
+                  <Row className="justify-content-center align-items-center">
+                    <Col className="text-center" xs={4}>
+                      <Spinner animation="border" />
+                    </Col>
+                  </Row>
+                </Container>
+              )}
+
               {caption && (
                 <div className="modal-image-text-wrapper">
                   <p className="modal-image-text">{caption}</p>
