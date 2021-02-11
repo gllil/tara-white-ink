@@ -5,6 +5,8 @@ import useFirestoreDesc from "../hooks/useFirestoreDesc";
 
 const About = () => {
   const { docs } = useFirestoreDesc("pageInfo");
+  console.log(docs);
+
   const formatPhoneNumber = (phoneNum) => {
     var cleaned = ("" + phoneNum).replace(/\D/g, "");
     var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
@@ -92,11 +94,14 @@ const About = () => {
                   </Row>
                   <Row>
                     <Col className="aboutMePgh">
-                      <p>{doc.aboutMe}</p>
-                      {/* <p>
-                        X 0 X O <br />
-                        Tara
-                      </p> */}
+                      <p>
+                        {doc.aboutMe.split("\n").map((paragraph, i) => (
+                          <span key={i}>
+                            {paragraph}
+                            <br />
+                          </span>
+                        ))}
+                      </p>
                     </Col>
                   </Row>
                 </div>

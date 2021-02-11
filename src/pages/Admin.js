@@ -28,7 +28,7 @@ const Admin = () => {
   const [successModal, setSuccessModal] = useState(false);
   const [errorModal, setErrorModal] = useState(false);
   const [noSuccess, setNoSuccess] = useState(false);
-
+  console.log(docs);
   const formatPhoneNumber = (phoneNum) => {
     var cleaned = ("" + phoneNum).replace(/\D/g, "");
     var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
@@ -77,14 +77,35 @@ const Admin = () => {
       .then(() => setModalOpen(false));
   };
 
-  const handleForm = (e) => {
+  // const handleSpaces = (description, aboutMe) => {
+  //   if (description) {
+  //     description = description.replace(/  /g, "[sp][sp]");
+  //     description = description.replace(/\n/g, "[nl]");
+  //     setFormData({
+  //       description: description,
+  //     });
+  //   }
+  //   if (aboutMe) {
+  //     aboutMe = aboutMe.replace(/  /g, "[sp][sp]");
+  //     aboutMe = aboutMe.replace(/\n/g, "[nl]");
+  //     setFormData({
+  //       aboutMe: aboutMe,
+  //     });
+  //   }
+  // };
+
+  const handleForm = async (e) => {
     const { dataset, value } = e.target;
 
     setFormData({ ...formData, [dataset.property]: value });
+
+    console.log(formData);
   };
   const fullForm = document.querySelector(".form");
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    // handleSpaces(formData.description, formData.aboutMe);
     if (fullForm) {
       pageDataRef
         .doc("6lWTkNKLtZMq9u6pfV3h")
@@ -202,7 +223,7 @@ const Admin = () => {
               <Modal.Body>
                 <Row>
                   <Col>
-                    <h3>Updated Successfully</h3>
+                    <h3 className="p-3">Updated Successfully</h3>
                   </Col>
                 </Row>
               </Modal.Body>
@@ -217,31 +238,39 @@ const Admin = () => {
               </Modal.Footer>
             </Modal>
             <Modal className="p-2" show={errorModal}>
-              <Row>
-                <Col>
-                  <h3>One or more lines must be filled in order to submit</h3>
-                </Col>
-              </Row>
-
-              <Row>
-                <Col>
-                  <Button onClick={() => setErrorModal(false)}>Close</Button>
-                </Col>
-              </Row>
+              <Modal.Body>
+                <Row>
+                  <Col>
+                    <h3 className="p-3">
+                      One or more lines must be filled in order to submit
+                    </h3>
+                  </Col>
+                </Row>
+              </Modal.Body>
+              <Modal.Footer>
+                <Row>
+                  <Col>
+                    <Button onClick={() => setErrorModal(false)}>Close</Button>
+                  </Col>
+                </Row>
+              </Modal.Footer>
             </Modal>
             <Modal className="p-2" show={noSuccess}>
-              <Row>
-                <Col>
-                  <h3>Error:</h3>
-                  <p>Form was not submitted successfully</p>
-                </Col>
-              </Row>
-
-              <Row>
-                <Col>
-                  <Button onClick={() => setNoSuccess(false)}>Close</Button>
-                </Col>
-              </Row>
+              <Modal.Body>
+                <Row>
+                  <Col className="p-3">
+                    <h3>Error:</h3>
+                    <p>Form was not submitted successfully</p>
+                  </Col>
+                </Row>
+              </Modal.Body>
+              <Modal.Footer>
+                <Row>
+                  <Col>
+                    <Button onClick={() => setNoSuccess(false)}>Close</Button>
+                  </Col>
+                </Row>
+              </Modal.Footer>
             </Modal>
           </Col>
         </Row>
