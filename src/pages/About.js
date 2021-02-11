@@ -93,10 +93,10 @@ const About = () => {
                   <Row>
                     <Col className="aboutMePgh">
                       <p>{doc.aboutMe}</p>
-                      <p>
+                      {/* <p>
                         X 0 X O <br />
                         Tara
-                      </p>
+                      </p> */}
                     </Col>
                   </Row>
                 </div>

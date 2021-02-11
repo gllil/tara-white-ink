@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import {
   Container,
   Row,
@@ -50,7 +50,7 @@ const Landing = () => {
 
                   {doc.caption && (
                     <Carousel.Caption className="caption">
-                      {`"${doc.caption}"`}
+                      {`${doc.caption}`}
                     </Carousel.Caption>
                   )}
                 </Carousel.Item>
@@ -68,16 +68,15 @@ const Landing = () => {
             setCaption={setCaption}
           />
           <Modal
+            size="lg"
             show={open}
             onHide={handleModalClose}
             className="mobileModal pl-0"
             dialogClassName="modal-body pl-0"
             centered
           >
-            <Modal.Body className="p-0 modal-body-wrap">
-              {selectedImg ? (
-                <Image src={selectedImg} className="modalImage" alt={caption} />
-              ) : (
+            <Suspense
+              fallback={
                 <Container>
                   <Row className="justify-content-center align-items-center">
                     <Col className="text-center" xs={4}>
@@ -85,14 +84,27 @@ const Landing = () => {
                     </Col>
                   </Row>
                 </Container>
-              )}
+              }
+            >
+              <Modal.Body className="p-0 modal-body-wrap">
+                <span onClick={handleModalClose}>
+                  <i className="fas fa-times fa-lg closeModalBtn"></i>
+                </span>
 
-              {caption && (
-                <div className="modal-image-text-wrapper">
-                  <p className="modal-image-text">{caption}</p>
-                </div>
-              )}
-            </Modal.Body>
+                <Image
+                  fluid
+                  src={selectedImg}
+                  className="modalImage"
+                  alt={caption}
+                />
+
+                {caption && (
+                  <div className="modal-image-text-wrapper">
+                    <p className="modal-image-text">{caption}</p>
+                  </div>
+                )}
+              </Modal.Body>
+            </Suspense>
           </Modal>
         </Col>
       </Row>
