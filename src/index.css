@@ -16,6 +16,10 @@ code {
     monospace;
 }
 
+.storeContainer {
+  margin-bottom: 100px;
+}
+
 /* bottom Navigation */
 .bottom-nav {
   display: none;

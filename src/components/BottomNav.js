@@ -17,6 +17,12 @@ const BottomNav = () => {
             <h6>About Me</h6>
           </a>
         </Col>
+        <Col className="p-0 menuBtn">
+          <a href="/store" className="nav-link">
+            <i className="fas fa-store"></i>
+            <h6>Store</h6>
+          </a>
+        </Col>
       </Row>
     </Container>
   );

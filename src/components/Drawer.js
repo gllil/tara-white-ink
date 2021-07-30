@@ -113,7 +113,14 @@ const Drawer = ({ setSelectedImg, setIndex }) => {
           <Nav fill justify className="drawerNav">
             <Nav.Item>
               <Nav.Link href="/about">
-                <h5>Learn more</h5>
+                <i className="fas fa-address-card"></i>
+                <h5>About Me</h5>
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link href="/store">
+                <i className="fas fa-store"></i>
+                <h5>Store</h5>
               </Nav.Link>
             </Nav.Item>
           </Nav>

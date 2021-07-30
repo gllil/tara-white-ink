@@ -1,10 +1,15 @@
 import React from "react";
-import { Row, Col, Container, Badge } from "react-bootstrap";
+import { Badge, Col, Container, Row } from "react-bootstrap";
 import logo from "../assets/images/mainLogo.png";
+import StoreItem from "../components/StoreItem";
 import useFirestoreDesc from "../hooks/useFirestoreDesc";
+import useListings from "../hooks/useListings";
 
-const About = () => {
+const StoreFront = () => {
   const { docs } = useFirestoreDesc("pageInfo");
+  const { items } = useListings("listings");
+
+  console.log(items);
 
   const formatPhoneNumber = (phoneNum) => {
     var cleaned = ("" + phoneNum).replace(/\D/g, "");
@@ -15,14 +20,23 @@ const About = () => {
     return null;
   };
   return (
-    <Container className="aboutContainer">
+    <Container className="storeContainer">
       <div className="headerAbout">
         <Row>
           <Col className="text-right">
             <h4>
+              <span className=" fa-layers fa-fw mr-2 mt-2">
+                <i className="fas fa-shopping-cart fa-lg"></i>
+                <span
+                  className="fa-layers-text fa-inverse "
+                  data-fa-transform="shrink-6 right-4 up-1"
+                >
+                  27
+                </span>
+              </span>
               <a href="/" className="aboutMeLink">
                 <Badge className="aboutMeLinkStyle m-1" variant="secondary">
-                  <i class="fas fa-home fa-lg"></i>
+                  <i className="fas fa-home fa-lg"></i>
                 </Badge>
               </a>
             </h4>
@@ -49,6 +63,11 @@ const About = () => {
                 </Col>
               </Row>
               <Row>
+                <Col className="text-center">
+                  <h1>Store</h1>
+                </Col>
+              </Row>
+              <Row>
                 <Col className="text-center mt-3">
                   <a
                     className="intagramLink"
@@ -67,45 +86,16 @@ const About = () => {
             </div>
           ))}
       </div>
-      <Row>
-        <Col>
-          <div className="aboutMeContainer">
-            <Row>
-              <Col className="text-center">
-                <h1>About Me</h1>
-              </Col>
-            </Row>
-            {docs &&
-              docs.map((doc) => (
-                <div>
-                  <Row>
-                    <Col className="text-center">
-                      <img
-                        src={doc.url}
-                        alt="profile"
-                        className="aboutMeImage"
-                      />
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col className="aboutMePgh">
-                      <p>
-                        {doc.aboutMe.split("\n").map((paragraph, i) => (
-                          <span key={i}>
-                            {paragraph}
-                            <br />
-                          </span>
-                        ))}
-                      </p>
-                    </Col>
-                  </Row>
-                </div>
-              ))}
-          </div>
-        </Col>
+      <Row className="row justify-content-center justify-content-evenly">
+        <StoreItem xs={12} sm={6} md={4} lg={3} className="col" />
+        <StoreItem xs={12} sm={6} md={4} lg={3} className="col" />
+        <StoreItem xs={12} sm={6} md={4} lg={3} className="col" />
+        <StoreItem xs={12} sm={6} md={4} lg={3} className="col" />
+        <StoreItem xs={12} sm={6} md={4} lg={3} className="col" />
+        <StoreItem xs={12} sm={6} md={4} lg={3} className="col" />
       </Row>
     </Container>
   );
 };
 
-export default About;
+export default StoreFront;
