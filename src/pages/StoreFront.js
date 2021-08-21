@@ -87,12 +87,30 @@ const StoreFront = () => {
           ))}
       </div>
       <Row className="row justify-content-center justify-content-evenly">
-        <StoreItem xs={12} sm={6} md={4} lg={3} className="col" />
-        <StoreItem xs={12} sm={6} md={4} lg={3} className="col" />
-        <StoreItem xs={12} sm={6} md={4} lg={3} className="col" />
-        <StoreItem xs={12} sm={6} md={4} lg={3} className="col" />
-        <StoreItem xs={12} sm={6} md={4} lg={3} className="col" />
-        <StoreItem xs={12} sm={6} md={4} lg={3} className="col" />
+        {items.length === 0 && (
+          <Col className="text-center mt-5">
+            <h4>
+              <i className="fas fa-ghost"></i> Oh no! We currently do not have
+              any items for sale at the moment. Please check back later.
+            </h4>
+          </Col>
+        )}
+        {items.map((item) => (
+          <StoreItem
+            xs={12}
+            sm={6}
+            md={4}
+            lg={3}
+            className="col"
+            addCart={true}
+            id={item.id}
+            itemName={item.name}
+            itemDescription={item.description}
+            quantity={item.quantity}
+            price={item.price}
+            photo={item.url}
+          />
+        ))}
       </Row>
     </Container>
   );

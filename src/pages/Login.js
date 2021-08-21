@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
-import { AuthContext } from "../components/Auth";
+import { AuthContext } from "../auth/Auth";
 import { auth } from "../firebase/config";
 import {
   Row,

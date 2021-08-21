@@ -16,6 +16,16 @@ code {
     monospace;
 }
 
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+  font-size: 24pt;
+  font-weight: bold;
+}
+
 .storeContainer {
   margin-bottom: 100px;
 }

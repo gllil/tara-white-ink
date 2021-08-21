@@ -4,9 +4,11 @@ import logo from "../assets/images/mainLogo.png";
 import { CSSTransition } from "react-transition-group";
 import ImageGrid from "./ImageGrid";
 import useFirestoreDesc from "../hooks/useFirestoreDesc";
+import useListings from "../hooks/useListings";
 
 const Drawer = ({ setSelectedImg, setIndex }) => {
   const { docs } = useFirestoreDesc("pageInfo");
+  const { items } = useListings("listings");
   const [show, setShow] = useState(true);
   const [menu, setMenu] = useState(false);
 
@@ -117,12 +119,14 @@ const Drawer = ({ setSelectedImg, setIndex }) => {
                 <h5>About Me</h5>
               </Nav.Link>
             </Nav.Item>
-            <Nav.Item>
-              <Nav.Link href="/store">
-                <i className="fas fa-store"></i>
-                <h5>Store</h5>
-              </Nav.Link>
-            </Nav.Item>
+            {items.length > 0 && (
+              <Nav.Item>
+                <Nav.Link href="/store">
+                  <i className="fas fa-store"></i>
+                  <h5>Store</h5>
+                </Nav.Link>
+              </Nav.Item>
+            )}
           </Nav>
         </Container>
       </CSSTransition>
