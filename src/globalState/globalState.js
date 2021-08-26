@@ -6,7 +6,10 @@ export const GlobalState = ({ children }) => {
   const [state, setState] = useState({
     run: false,
     load: false,
+    editRun: false,
+    editLoad: false,
     formData: {},
+    editFormData: {},
   });
 
   return (

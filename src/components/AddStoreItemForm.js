@@ -56,6 +56,7 @@ export const AddStoreItemForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     setState({
       load: true,
       formData: {

@@ -6,7 +6,7 @@ import {
 } from "../firebase/config";
 import { GlobalContext } from "../globalState/globalState";
 
-const useStorage = (file, collection) => {
+const useStorageEdit = (file, collection) => {
   const [state, setState] = useContext(GlobalContext);
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(null);
@@ -46,10 +46,10 @@ const useStorage = (file, collection) => {
 
         if (collection === "listings") {
           setState({
-            run: true,
-            ...state.load,
-            formData: {
-              ...state.formData,
+            editRun: true,
+            ...state.editload,
+            editFormData: {
+              ...state.editFormData,
               url: url,
               createdAt: createdAt,
             },
@@ -64,4 +64,4 @@ const useStorage = (file, collection) => {
   return { progress, url, error };
 };
 
-export default useStorage;
+export default useStorageEdit;
