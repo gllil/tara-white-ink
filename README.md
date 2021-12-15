@@ -6,7 +6,7 @@ This is a web app for a home design company. Inludes a gallery and a backend tha
 
 # Link
 
-https://tarawhite.ink/
+https://tara-white-ink.web.app/
 
 # Image
 
